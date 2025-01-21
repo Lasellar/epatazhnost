@@ -24,6 +24,7 @@ class Item(Model):
 class ItemSize(Model):
     item = ForeignKey(Item, on_delete=CASCADE, related_name='itemsize')
     size = ForeignKey(Size, on_delete=CASCADE, related_name='itemsize')
+    is_in_stock = BooleanField(default=False, null=True, blank=True)
 
 
 class ImageItem(Model):
