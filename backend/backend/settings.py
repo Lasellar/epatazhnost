@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'api.apps.ApiConfig'
+    'api_v1.apps.ApiV1Config'
 ]
 
 MIDDLEWARE = [
@@ -111,8 +111,8 @@ REST_FRAMEWORK = {
 
 EMPTY_VALUE = '<пусто>'
 
-CORS_URLS_REGEX = r'^/api/.*$'
+CORS_URLS_REGEX = r'^/api_v1/.*$'
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
 ]
-CSRF_TRUSTED_ORIGINS = None
+# CSRF_TRUSTED_ORIGINS = ('https://domain',)
