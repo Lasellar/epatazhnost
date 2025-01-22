@@ -4,7 +4,7 @@ from django.contrib.admin import (
 )
 
 from .models import (
-    Category, Size, ItemSize, Item, ImageItem
+    Category, Size, ItemSize, Item, ImageItem, Gig
 )
 
 
@@ -40,3 +40,10 @@ class ItemAdmin(CustomModelAdmin):
     list_display = ('id', 'name', 'is_published')
     list_display_links = ('name',)
     list_editable = ('is_published', )
+
+
+@register(Gig)
+class GigAdmin(CustomModelAdmin):
+    list_display = ('city', 'date', 'time', 'place', 'price')
+    list_display_links = ('city',)
+    list_editable = ('price',)
