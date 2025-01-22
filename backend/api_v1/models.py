@@ -1,6 +1,6 @@
 from django.db.models import (
     Model, CharField, IntegerField, ForeignKey, BooleanField,
-    ManyToManyField, SlugField, TextField, CASCADE, ImageField, UniqueConstraint
+    ManyToManyField, SlugField, TextField, CASCADE, ImageField, UniqueConstraint, DateTimeField
 )
 
 
@@ -95,3 +95,24 @@ class Gig(Model):
 
     def __str__(self):
         return f'Концерт в {self.city}'
+
+
+class ShoppingCart(Model):
+    user_cookie = CharField(max_length=60)
+    item = ForeignKey(
+        Item, on_delete=CASCADE, related_name='shoppingcart'
+    )
+    created = DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('user_cookie',)
+        verbose_name = 'Корзина'
+        verbose_name_plural = 'Корзины'
+        constraints = [
+            UniqueConstraint(
+                fields=('user_cookie', 'item'), name='unique-user-item'
+            )
+        ]
+
+    def __str__(self):
+        return f'{self.item.name} в списке покупок у {self.user_cookie}'
