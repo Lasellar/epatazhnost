@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.serializers import (
     ModelSerializer, ImageField, IntegerField, PrimaryKeyRelatedField,
     CharField, Serializer, SerializerMethodField, ValidationError,
-    FloatField
+    FloatField, BooleanField
 )
 
 from .models import (
@@ -41,24 +41,33 @@ class SizeSerializer(ModelSerializer):
 class ImageItemSerializer(ModelSerializer):
     class Meta:
         model = ImageItem
-        fields = ('item', 'image')
+        fields = ('image',)
 
 
-class ItemSizeSerializer(ModelSerializer):
+class SizeItemSerializer(ModelSerializer):
+    name = CharField(source='size.name')
+
     class Meta:
         model = ItemSize
-        fields = ('size',)
+        fields = ('name', 'is_in_stock')
 
 
 class ItemSerializer(ModelSerializer):
-    sizes = SizeSerializer(many=True)
-    attachments = ImageItemSerializer(many=True)
+    sizes = SizeItemSerializer(source='itemsize', many=True)
+    attachments = SerializerMethodField()
+    main_image = SerializerMethodField()
 
     class Meta:
         model = Item
         fields = (
-            'id', 'is_published', 'name', 'description', 'sizes',
+            'id', 'is_published', 'name', 'price', 'description', 'sizes',
             'main_image', 'attachments'
         )
+
+    def get_attachments(self, obj):
+        return [image_item.image.url for image_item in obj.imageitem.all()]
+
+    def get_main_image(self, obj):
+        return obj.main_image.url
 
 

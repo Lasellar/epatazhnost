@@ -36,6 +36,7 @@ class Item(Model):
     category = ForeignKey(
         Category, on_delete=CASCADE, related_name='itemcategory'
     )
+    price = IntegerField()
 
     class Meta:
         verbose_name = 'Мерч'
