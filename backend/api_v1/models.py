@@ -33,6 +33,9 @@ class Item(Model):
     sizes = ManyToManyField(Size, related_name='itemsizes', through='ItemSize')
     is_published = BooleanField(blank=True, default=False)
     main_image = ImageField(upload_to='items_images')
+    category = ForeignKey(
+        Category, on_delete=CASCADE, related_name='itemcategory'
+    )
 
     class Meta:
         verbose_name = 'Мерч'
@@ -48,8 +51,8 @@ class ItemSize(Model):
     is_in_stock = BooleanField(blank=True, default=False)
 
     class Meta:
-        verbose_name = 'Вещь-размер'
-        verbose_name_plural = 'Вещь-размер'
+        verbose_name = 'размер'
+        verbose_name_plural = 'размер'
         constraints = [
             UniqueConstraint(
                 fields=('item', 'size'), name='unique-item-size'
@@ -68,8 +71,8 @@ class ImageItem(Model):
     is_published = BooleanField(blank=True, default=False)
 
     class Meta:
-        verbose_name = 'Вещь-доп.фото'
-        verbose_name_plural = 'Вещь-доп.фото'
+        verbose_name = 'фото'
+        verbose_name_plural = 'фото'
 
     def __str__(self):
         return f'{self.item}-{self.image}-{self.is_published}'

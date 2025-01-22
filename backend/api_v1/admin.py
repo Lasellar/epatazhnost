@@ -14,12 +14,12 @@ class CustomModelAdmin(ModelAdmin):
 
 class SizeInline(TabularInline):
     model = ItemSize
-    extra = 1
+    extra = 0
 
 
 class ImageInline(TabularInline):
     model = ImageItem
-    extra = 1
+    extra = 0
 
 
 @register(Category)
