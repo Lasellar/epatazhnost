@@ -102,17 +102,12 @@ class ShoppingCart(Model):
     item = ForeignKey(
         Item, on_delete=CASCADE, related_name='shoppingcart'
     )
-    created = DateTimeField(auto_now=True)
+    created = DateTimeField(auto_now=True, blank=True)
 
     class Meta:
         ordering = ('user_cookie',)
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзины'
-        constraints = [
-            UniqueConstraint(
-                fields=('user_cookie', 'item'), name='unique-user-item'
-            )
-        ]
 
     def __str__(self):
         return f'{self.item.name} в списке покупок у {self.user_cookie}'

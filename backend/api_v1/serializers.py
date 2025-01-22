@@ -87,6 +87,12 @@ class GigSerializer(ModelSerializer):
 class ShoppingCartSerializer(ModelSerializer):
     class Meta:
         model = ShoppingCart
-        fields = ('item', 'created')
+        fields = ('user_cookie', 'item', 'created')
+
+
+class ShoppingCartGETSerializer(ModelSerializer):
+    class Meta:
+        model = ShoppingCart
+        fields = ('item',)
 
 
