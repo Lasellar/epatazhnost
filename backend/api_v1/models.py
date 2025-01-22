@@ -87,6 +87,7 @@ class Gig(Model):
     place = CharField(max_length=128)
     price = IntegerField()
     tickets_url = TextField()
+    is_published = BooleanField(blank=True, default=False)
 
     class Meta:
         verbose_name = 'Концерт'
