@@ -26,25 +26,8 @@ class Base64ImageField(ImageField):
         return super().to_internal_value(data)
 
 
-class CategorySerializer(ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ('id', 'name', 'slug')
-
-
-class SizeSerializer(ModelSerializer):
-    class Meta:
-        model = Size
-        fields = ('id', 'name')
-
-
-class ImageItemSerializer(ModelSerializer):
-    class Meta:
-        model = ImageItem
-        fields = ('image',)
-
-
 class SizeItemSerializer(ModelSerializer):
+    """Сериализатор для поля размеров у вещи."""
     name = CharField(source='size.name')
 
     class Meta:
@@ -53,6 +36,7 @@ class SizeItemSerializer(ModelSerializer):
 
 
 class ItemSerializer(ModelSerializer):
+    """Сериализатор для вещи."""
     sizes = SizeItemSerializer(source='itemsize', many=True)
     attachments = SerializerMethodField()
     main_image = SerializerMethodField()
@@ -72,6 +56,7 @@ class ItemSerializer(ModelSerializer):
 
 
 class GigSerializer(ModelSerializer):
+    """Сериализатор для концерта."""
     image = SerializerMethodField()
 
     class Meta:
@@ -85,12 +70,14 @@ class GigSerializer(ModelSerializer):
 
 
 class ShoppingCartSerializer(ModelSerializer):
+    """Сериализатор для добавления/удаления товара в корзине."""
     class Meta:
         model = ShoppingCart
         fields = ('user_cookie', 'item', 'created')
 
 
 class ShoppingCartGETSerializer(ModelSerializer):
+    """Сериализатор для получения корзины покупок."""
     class Meta:
         model = ShoppingCart
         fields = ('item',)
