@@ -30,7 +30,9 @@ class Size(Model):
 class Item(Model):
     name = CharField(max_length=64)
     description = TextField()
-    sizes = ManyToManyField(Size, related_name='itemsizes', through='ItemSize')
+    sizes = ManyToManyField(
+        Size, related_name='itemsizes', through='ItemSize'
+    )
     is_published = BooleanField(blank=True, default=False)
     main_image = ImageField(upload_to='items_images')
     category = ForeignKey(
@@ -48,7 +50,10 @@ class Item(Model):
 
 class ItemSize(Model):
     item = ForeignKey(Item, on_delete=CASCADE, related_name='itemsize')
-    size = ForeignKey(Size, on_delete=CASCADE, related_name='itemsize')
+    size = ForeignKey(
+        Size, on_delete=CASCADE, related_name='itemsize',
+        blank=True, null=True
+    )
     is_in_stock = BooleanField(blank=True, default=False)
 
     class Meta:

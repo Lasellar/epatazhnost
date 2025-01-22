@@ -1,0 +1,52 @@
+[
+  {
+    "city": "Москва",
+    "image": "/gigs_images/moscow.png",
+    "date": "03.03",
+    "time": "20:00",
+    "place": "Клуб Клуб",
+    "price": 500,
+    "tickets_url": "https://vk.com/artist/epatazhnost",
+    "is_published": 1
+  },
+  {
+    "city": "Санкт-Петербург",
+    "image": "/gigs_images/spb.png",
+    "date": "04.03",
+    "time": "20:00",
+    "place": "Клуб Мачты",
+    "price": 500,
+    "tickets_url": "https://vk.com/artist/epatazhnost",
+    "is_published": 1
+  },
+  {
+    "city": "Нижний Новгород",
+    "image": "/gigs_images/moscow.png",
+    "date": "05.03",
+    "time": "20:00",
+    "place": "Клуб TAGO)) MAGO))",
+    "price": 500,
+    "tickets_url": "https://vk.com/artist/epatazhnost",
+    "is_published": 1
+  },
+  {
+    "city": "Тула",
+    "image": "/gigs_images/moscow.png",
+    "date": "07.03",
+    "time": "20:00",
+    "place": "Клуб Флигель",
+    "price": 500,
+    "tickets_url": "https://vk.com/artist/epatazhnost",
+    "is_published": 1
+  },
+  {
+    "city": "Ярославль",
+    "image": "/gigs_images/moscow.png",
+    "date": "08.03",
+    "time": "20:00",
+    "place": "TBA",
+    "price": 500,
+    "tickets_url": "https://vk.com/artist/epatazhnost",
+    "is_published": 1
+  }
+]

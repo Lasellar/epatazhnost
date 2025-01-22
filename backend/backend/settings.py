@@ -101,6 +101,8 @@ STATIC_ROOT = BASE_DIR / 'backend_static/static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+DATAFILES_DIR = BASE_DIR / 'data'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Тишка обычная",
+    "description": "Хлопок 120% очень круто бери!",
+    "is_published": 1,
+    "main_image": "/items_images/thirtcommon.png",
+    "category": 2,
+    "price": 1000,
+
+    "sizes": [1, 2, 3, 4],
+    "images": [
+      "/items_images/thirtcommon1.png",
+      "/items_images/thirtcommon2.png",
+      "/items_images/thirtcommon3.png"
+    ]
+  },
+  {
+    "name": "Худак крутой",
+    "description": "Тут капюшон жесть ваще",
+    "is_published": 1,
+    "main_image": "/items_images/hoodiecommon.png",
+    "category": 1,
+    "price": 3400,
+
+    "sizes": [1, 2, 3, 4],
+    "images": [
+      "/items_images/hoodiecommon1.png",
+      "/items_images/hoodiecommon2.png",
+      "/items_images/hoodiecommon3.png"
+    ]
+  },
+  {
+    "name": "Носочки",
+    "description": "Очень удобно!",
+    "is_published": 1,
+    "main_image": "/items_images/sockscommon.png",
+    "category": 3,
+    "price": 400,
+
+    "sizes": [5, 6],
+    "images": [
+      "/items_images/sockscommon1.png",
+      "/items_images/sockscommon2.png",
+      "/items_images/sockscommon3.png"
+    ]
+  },
+  {
+    "name": "Зажигалочка",
+    "description": "Только самовывоз!",
+    "is_published": 1,
+    "main_image": "/items_images/firecommon.png",
+    "category": 4,
+    "price": 150,
+
+    "sizes": [],
+    "images": [
+      "/items_images/firecommon1.png",
+      "/items_images/firecommon2.png",
+      "/items_images/firecommon3.png"
+    ]
+  }
+]
