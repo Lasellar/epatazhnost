@@ -8,7 +8,7 @@ from rest_framework.serializers import (
 )
 
 from .models import (
-    Category, Size, ItemSize, Item, ImageItem, Gig
+    Category, Size, ItemSize, Item, ImageItem, Gig, ShoppingCart
 )
 
 import base64
@@ -82,5 +82,11 @@ class GigSerializer(ModelSerializer):
 
     def get_image(self, obj):
         return obj.image.url
+
+
+class ShoppingCartSerializer(ModelSerializer):
+    class Meta:
+        model = ShoppingCart
+        fields = ('item', 'created')
 
 
