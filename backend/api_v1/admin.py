@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.admin import (
-    ModelAdmin, register,
+    ModelAdmin, register, TabularInline
 )
 
 from .models import (
@@ -10,6 +10,16 @@ from .models import (
 
 class CustomModelAdmin(ModelAdmin):
     empty_value_display = settings.EMPTY_VALUE
+
+
+class SizeInline(TabularInline):
+    model = ItemSize
+    extra = 1
+
+
+class ImageInline(TabularInline):
+    model = ImageItem
+    extra = 1
 
 
 @register(Category)
@@ -22,16 +32,7 @@ class SizeAdmin(CustomModelAdmin):
     list_display = ('id', 'name')
 
 
-@register(ItemSize)
-class ItemSizeAdmin(CustomModelAdmin):
-    list_display = ('id', 'item', 'size')
-
-
 @register(Item)
 class ItemAdmin(CustomModelAdmin):
+    inlines = (SizeInline, ImageInline)
     list_display = ('id', 'name', 'is_published')
-
-
-@register(ImageItem)
-class ImageItemAdmin(CustomModelAdmin):
-    list_display = ('id', 'image', 'item', 'is_published')

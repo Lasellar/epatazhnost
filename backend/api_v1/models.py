@@ -1,6 +1,6 @@
 from django.db.models import (
     Model, CharField, IntegerField, ForeignKey, BooleanField,
-    ManyToManyField, SlugField, TextField, CASCADE, ImageField
+    ManyToManyField, SlugField, TextField, CASCADE, ImageField, UniqueConstraint
 )
 
 
@@ -45,11 +45,16 @@ class Item(Model):
 class ItemSize(Model):
     item = ForeignKey(Item, on_delete=CASCADE, related_name='itemsize')
     size = ForeignKey(Size, on_delete=CASCADE, related_name='itemsize')
-    is_in_stock = BooleanField(default=False, null=True, blank=True)
+    is_in_stock = BooleanField(blank=True, default=False)
 
     class Meta:
         verbose_name = 'Вещь-размер'
         verbose_name_plural = 'Вещь-размер'
+        constraints = [
+            UniqueConstraint(
+                fields=('item', 'size'), name='unique-item-size'
+            )
+        ]
 
     def __str__(self):
         return f'{self.item}-{self.size}-{self.is_in_stock}'
