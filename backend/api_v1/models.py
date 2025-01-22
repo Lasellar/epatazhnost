@@ -76,3 +76,19 @@ class ImageItem(Model):
 
     def __str__(self):
         return f'{self.item}-{self.image}-{self.is_published}'
+
+
+class Gig(Model):
+    city = CharField(max_length=64)
+    image = ImageField(upload_to='gigs_images')
+    date = CharField(max_length=10)
+    time = CharField(max_length=5)
+    place = CharField(max_length=128)
+    price = IntegerField()
+
+    class Meta:
+        verbose_name = 'Концерт'
+        verbose_name_plural = 'Концерты'
+
+    def __str__(self):
+        return f'Концерт в {self.city}'
