@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-from .models import Item
+from .models import Item, Gig
 from .serializers import (
-    ItemSerializer
+    ItemSerializer, GigSerializer
 )
 
 
@@ -12,3 +12,7 @@ class ShopViewSet(ReadOnlyModelViewSet):
     serializer_class = ItemSerializer
     # pagination_class = None
 
+
+class GigViewSet(ReadOnlyModelViewSet):
+    queryset = Gig.objects.filter(is_published=True)
+    serializer_class = GigSerializer

@@ -72,10 +72,15 @@ class ItemSerializer(ModelSerializer):
 
 
 class GigSerializer(ModelSerializer):
+    image = SerializerMethodField()
+
     class Meta:
         model = Gig
         fields = (
             'city', 'image', 'date', 'time', 'place', 'price', 'tickets_url'
         )
+
+    def get_image(self, obj):
+        return obj.image.url
 
 

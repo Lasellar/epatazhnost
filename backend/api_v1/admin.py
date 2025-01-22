@@ -37,13 +37,15 @@ class SizeAdmin(CustomModelAdmin):
 @register(Item)
 class ItemAdmin(CustomModelAdmin):
     inlines = (SizeInline, ImageInline)
-    list_display = ('id', 'name', 'is_published')
+    list_display = ('id', 'is_published', 'name')
     list_display_links = ('name',)
     list_editable = ('is_published', )
 
 
 @register(Gig)
 class GigAdmin(CustomModelAdmin):
-    list_display = ('city', 'date', 'time', 'place', 'price')
+    list_display = (
+        'is_published', 'city', 'date', 'time', 'place', 'price'
+    )
     list_display_links = ('city',)
-    list_editable = ('price',)
+    list_editable = ('is_published', 'price',)
