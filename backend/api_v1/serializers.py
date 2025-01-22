@@ -8,7 +8,7 @@ from rest_framework.serializers import (
 )
 
 from .models import (
-    Category, Size, ItemSize, Item, ImageItem
+    Category, Size, ItemSize, Item, ImageItem, Gig
 )
 
 import base64
@@ -69,5 +69,13 @@ class ItemSerializer(ModelSerializer):
 
     def get_main_image(self, obj):
         return obj.main_image.url
+
+
+class GigSerializer(ModelSerializer):
+    class Meta:
+        model = Gig
+        fields = (
+            'city', 'image', 'date', 'time', 'place', 'price', 'tickets_url'
+        )
 
 
