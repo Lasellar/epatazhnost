@@ -62,8 +62,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ShopList'
-        tags:
-          - Магазин
+      tags:
+        - Магазин
   /api_v1/shop/{id}:
     get:
       operationId: Получение товара
@@ -102,6 +102,9 @@ paths:
           description: 'Ошибка удаления из списка покупок'
         '404':
           description: 'Товар не найден'
+      tags:
+        - Магазин
+
     delete:
       operationId: Удалить товар из списка покупок
       description: ''
@@ -119,6 +122,8 @@ paths:
           description: 'Ошибка удаления из списка покупок'
         '404':
           description: 'Товар не найден'
+      tags:
+        - Магазин
 
 components:
   schemas:
