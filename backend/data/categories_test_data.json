@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Кофты", "slug": "hoodies"
+  },
+  {
+    "name": "Футболки", "slug": "tshirts"
+  },
+  {
+    "name": "Носки", "slug": "socks"
+  },
+  {
+    "name": "Другое", "slug": "other"
+  }
+]

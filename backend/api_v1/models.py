@@ -5,6 +5,7 @@ from django.db.models import (
 
 
 class Category(Model):
+    """Модель категории."""
     name = CharField(max_length=30, unique=True)
     slug = SlugField(max_length=50, unique=True)
 
@@ -17,6 +18,7 @@ class Category(Model):
 
 
 class Size(Model):
+    """Модель размера для вещи."""
     name = CharField(max_length=10, unique=True)
 
     class Meta:
@@ -28,9 +30,12 @@ class Size(Model):
 
 
 class Item(Model):
+    """Модель вещи."""
     name = CharField(max_length=64)
     description = TextField()
-    sizes = ManyToManyField(Size, related_name='itemsizes', through='ItemSize')
+    sizes = ManyToManyField(
+        Size, related_name='itemsizes', through='ItemSize'
+    )
     is_published = BooleanField(blank=True, default=False)
     main_image = ImageField(upload_to='items_images')
     category = ForeignKey(
@@ -47,8 +52,12 @@ class Item(Model):
 
 
 class ItemSize(Model):
+    """Модель для связи вещей и размеров."""
     item = ForeignKey(Item, on_delete=CASCADE, related_name='itemsize')
-    size = ForeignKey(Size, on_delete=CASCADE, related_name='itemsize')
+    size = ForeignKey(
+        Size, on_delete=CASCADE, related_name='itemsize',
+        blank=True, null=True
+    )
     is_in_stock = BooleanField(blank=True, default=False)
 
     class Meta:
@@ -65,6 +74,7 @@ class ItemSize(Model):
 
 
 class ImageItem(Model):
+    """Модель для связи вещей и картинок."""
     image = ImageField(upload_to='items_images')
     item = ForeignKey(
         Item, related_name='imageitem', on_delete=CASCADE
@@ -80,6 +90,7 @@ class ImageItem(Model):
 
 
 class Gig(Model):
+    """Модель концерта."""
     city = CharField(max_length=64)
     image = ImageField(upload_to='gigs_images')
     date = CharField(max_length=10)
@@ -98,6 +109,7 @@ class Gig(Model):
 
 
 class ShoppingCart(Model):
+    """Модель корзины покупок."""
     user_cookie = CharField(max_length=60)
     item = ForeignKey(
         Item, on_delete=CASCADE, related_name='shoppingcart'
