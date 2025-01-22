@@ -4,7 +4,7 @@ from django.contrib.admin import (
 )
 
 from .models import (
-    Category, Size, ItemSize, Item, ImageItem, Gig
+    Category, Size, ItemSize, Item, ImageItem, Gig, ShoppingCart
 )
 
 
@@ -49,3 +49,8 @@ class GigAdmin(CustomModelAdmin):
     )
     list_display_links = ('city',)
     list_editable = ('is_published', 'price',)
+
+
+@register(ShoppingCart)
+class ShoppingCartAdmin(CustomModelAdmin):
+    list_display = ('user_cookie', 'item')
