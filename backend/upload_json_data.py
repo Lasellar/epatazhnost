@@ -1,3 +1,5 @@
+from tqdm import tqdm
+
 from backend.settings import DATAFILES_DIR
 
 import json
@@ -25,15 +27,17 @@ def load_json():
     for model, datafile in DATAFILES:
         data = open_json(datafile)
         if model == 'Category':
-            for category in data:
+            for category in tqdm(
+                    data, desc='Creating CATEGORY objects', colour=''
+            ):
                 Category.objects.get_or_create(
                     name=category['name'], slug=category['slug']
                 )
         elif model == 'Size':
-            for size in data:
+            for size in tqdm(data, desc='Creating SIZE objects'):
                 Size.objects.get_or_create(name=size['name'])
         elif model == 'Item':
-            for item in data:
+            for item in tqdm(data, desc='Creating ITEM objects'):
                 category_instance = Category.objects.get(id=item['category'])
                 Item.objects.get_or_create(
                     name=item['name'], description=item['description'],
@@ -58,7 +62,7 @@ def load_json():
                         image=image, item=item_instance, is_published=True
                     )
         elif model == 'Gig':
-            for gig in data:
+            for gig in tqdm(data, desc='Creating CATEGORY objects'):
                 Gig.objects.get_or_create(
                     city=gig['city'], image=gig['image'], date=gig['date'],
                     time=gig['time'], place=gig['place'], price=gig['price'],
@@ -66,7 +70,7 @@ def load_json():
                     is_published=gig['is_published']
                 )
 
-        print(f'{datafile} objects created')
+    print(f'all objects were created')
 
 
 if __name__ == '__main__':
