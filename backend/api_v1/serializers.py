@@ -8,7 +8,7 @@ from rest_framework.serializers import (
 )
 
 from .models import (
-    Category, Size, ItemSize, Item, ImageItem, Gig, ShoppingCart
+    Category, Size, ItemSize, Item, ImageItem, Gig, ShoppingCart, UserInfo
 )
 
 import base64
@@ -69,17 +69,20 @@ class GigSerializer(ModelSerializer):
         return obj.image.url
 
 
-class ShoppingCartSerializer(ModelSerializer):
-    """Сериализатор для добавления/удаления товара в корзине."""
+class UserInfoSerializer(ModelSerializer):
     class Meta:
-        model = ShoppingCart
-        fields = ('user_cookie', 'item', 'created')
+        model = UserInfo
+        firelds = (
+            'id', 'cookie', 'first_name', 'last_name',
+            'third_name', 'telegram', 'sdek'
+        )
 
 
-class ShoppingCartGETSerializer(ModelSerializer):
-    """Сериализатор для получения корзины покупок."""
+class OrderSerializer(ModelSerializer):
     class Meta:
-        model = ShoppingCart
-        fields = ('item',)
+        model = ItemSize
+        fields = (
+            'id', 'user', 'items'
+        )
 
 
