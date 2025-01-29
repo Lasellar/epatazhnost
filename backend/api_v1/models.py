@@ -125,4 +125,19 @@ class ShoppingCart(Model):
         return f'{self.item.name} в списке покупок у {self.user_cookie}'
 
 
+class PromoCode(Model):
+    name = CharField(max_length=100)
+    code = CharField(max_length=16, unique=True)
+    amount = IntegerField()
+
+    class Meta:
+        verbose_name = 'Промокод'
+        verbose_name_plural = 'Промокоды'
+
+    def __str__(self):
+        return f'[{self.code}] {self.name}, остаток: {self.amount}'
+
+
+
+
 
