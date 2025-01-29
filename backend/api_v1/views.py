@@ -24,59 +24,18 @@ class ShopViewSet(ModelViewSet):
     def create(self, request, *args, **kwargs):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    @action(
-        detail=True, methods=('post', 'delete'),
-        url_path='shopping-cart'
-    )
-    def shopping_cart(self, request, pk):
-        """
-        Добавляет товар в корзину или удаляет его из корзины.
-
-        :param request: HTTP запрос.
-        :param pk: ID товара.
-        :return: Ответ с данными о товаре в корзине или статус удаления.
-        """
-        item = get_object_or_404(Item, id=pk).id
-        user_cookie = request.headers['Cookie']
-        if request.method == 'POST':
-            serializer = ShoppingCartSerializer(
-                data={'user_cookie': user_cookie, 'item': item},
-                context={'request': request}
-            )
-            if serializer.is_valid():
-                serializer.save()
-                return Response(
-                    serializer.data, status=status.HTTP_201_CREATED
-                )
-            return Response(
-                serializer.errors, status=status.HTTP_400_BAD_REQUEST
-            )
-        if not ShoppingCart.objects.filter(
-            user_cookie=user_cookie, item=item
-        ).exists():
-            return Response(
-                {'error': 'Рецепта нет в списке покупок.'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        ShoppingCart.objects.filter(
-            user_cookie=user_cookie, item=item
-        ).delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    @action(detail=False, methods=('get',), url_path='get-shopping-cart')
-    def get_shopping_cart(self, request):
-        """
-        Получает список товаров в корзине для текущего пользователя.
-
-        :param request: HTTP запрос.
-        :return: Ответ с данными о товарах в корзине.
-        """
-        user_cookie = request.headers['Cookie']
-        queryset = ShoppingCart.objects.filter(user_cookie=user_cookie)
-        serializer = ShoppingCartSerializer(
-            queryset, context={'request': request}, many=True
-        )
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    @action(detail=False, methods=('post',), url_path='create-order')
+    def create_order(self, request):
+        data = request.data
+        user_cookie = data.get('cookie')
+        promo = data.get('promocode')
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
+        third_name = data.get('third_name')
+        tg = data.get('telegram')
+        sdek = data.get('sdek')
+        items = data.get('items')
+        return
 
 
 class GigViewSet(ReadOnlyModelViewSet):

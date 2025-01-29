@@ -125,9 +125,45 @@ class ShoppingCart(Model):
         return f'{self.item.name} в списке покупок у {self.user_cookie}'
 
 
+class UserInfo(Model):
+    cookie = CharField(max_length=60)
+    first_name = CharField(max_length=64)
+    last_name = CharField(max_length=64)
+    third_name = CharField(max_length=64)
+    telegram = CharField(max_length=1024)
+    sdek = CharField(max_length=1024)
+
+    class Meta:
+        verbose_name = 'Инфо о пользователе'
+        verbose_name_plural = 'Инфо о пользователях'
+
+    def __str__(self):
+        return (
+            f'[{self.cookie}] - {self.first_name} {self.last_name} '
+            f'{self.third_name} tg: {self.telegram} SDEK: {self.sdek}'
+        )
+
+
+class Order(Model):
+    user = ForeignKey(UserInfo, on_delete=CASCADE)
+    items = ManyToManyField(
+        Item, related_name='orderitems', through='ItemOrder'
+    )
+    created = DateTimeField(auto_now=True, blank=True)
+
+
+class ItemOrder(Model):
+    item = ForeignKey(Item, on_delete=CASCADE, related_name='itemorder')
+    order = ForeignKey(
+        Order, on_delete=CASCADE, related_name='itemorder',
+        blank=True, null=True
+    )
+
+
 class PromoCode(Model):
     name = CharField(max_length=100)
     code = CharField(max_length=16, unique=True)
+    discount = IntegerField(verbose_name='скидка в %')
     amount = IntegerField()
 
     class Meta:
