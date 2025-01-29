@@ -3,5 +3,5 @@ WORKDIR /app
 COPY package*.json ./
 RUN yarn install
 COPY . ./
-RUN ...
+RUN react-scripts build
 CMD cp -r build result_build
