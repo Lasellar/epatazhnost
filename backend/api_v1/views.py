@@ -6,7 +6,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
 
 from .models import Item, Gig, ShoppingCart
 from .serializers import (
-    ItemSerializer, GigSerializer, ShoppingCartSerializer
+    ItemSerializer, GigSerializer
 )
 
 
