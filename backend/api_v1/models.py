@@ -58,7 +58,7 @@ class ItemSize(Model):
         Size, on_delete=CASCADE, related_name='itemsize',
         blank=True, null=True
     )
-    is_in_stock = BooleanField(blank=True, default=False)
+    amount = IntegerField(blank=True, default=0)
 
     class Meta:
         verbose_name = 'размер'
@@ -70,7 +70,7 @@ class ItemSize(Model):
         ]
 
     def __str__(self):
-        return f'{self.item}-{self.size}-{self.is_in_stock}'
+        return f'{self.item}-{self.size}-{self.amount}'
 
 
 class ImageItem(Model):
@@ -123,3 +123,6 @@ class ShoppingCart(Model):
 
     def __str__(self):
         return f'{self.item.name} в списке покупок у {self.user_cookie}'
+
+
+
