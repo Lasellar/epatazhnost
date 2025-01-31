@@ -163,3 +163,9 @@ media/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+bot.session
+bot.session-journal
+sender
+logs.txt
+users.txt
