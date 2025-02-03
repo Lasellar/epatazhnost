@@ -1,0 +1,21 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  padding: 50px 10px 50px 10px;
+}
+
+.rowColumn {
+  display: flex;
+  align-items: center;
+}
+
+.rowColumn p {
+  font-size: 20px;
+  margin: 0 40px 0 40px;
+}
+
+.link {
+  padding: 0 10px 0 10px;
+}
