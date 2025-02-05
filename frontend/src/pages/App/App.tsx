@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.scss';
-import MainPage from "../MainPage/MainPage";
 import AppHeader from "../../components/AppHeader/AppHeader";
 import AppFooter from "../../components/AppFooter/AppFooter";
+import ShopPage from "../ShopPage/ShopPage";
 
 function App() {
     return (
         <div>
             <AppHeader/>
-            <MainPage/>
+            <ShopPage />
+            {/*<MainPage/>*/}
             <AppFooter/>
         </div>
     );
