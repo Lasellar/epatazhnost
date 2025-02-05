@@ -146,6 +146,8 @@ jobs:
             sudo docker compose pull
             sudo docker compose down
             sudo docker compose up -d
+            echo "Пауза перед миграцией 10 с"
+            sleep 10
             sudo docker compose exec backend python manage.py migrate
             sudo docker compose exec backend python manage.py collectstatic
             sudo docker compose exec backend cp -r /app/backend_static/static/. /backend_static/static/
