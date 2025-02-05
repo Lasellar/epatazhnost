@@ -10,8 +10,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'epatazhnost.ddns.net',
-    '194.87.98.99',
-    '194.87.98.186',
+    '176.113.82.148',
     '127.0.0.1',
 ]
 
