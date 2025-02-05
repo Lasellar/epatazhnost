@@ -32,7 +32,7 @@ class SizeItemSerializer(ModelSerializer):
 
     class Meta:
         model = ItemSize
-        fields = ('name', 'is_in_stock')
+        fields = ('name', 'amount')
 
 
 class ItemSerializer(ModelSerializer):
