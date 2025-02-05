@@ -51,11 +51,11 @@ def load_json():
                     main_image=item['main_image'], category=category_instance,
                     price=item['price']
                 )
-                for size in item['sizes']:
-                    size_instance = Size.objects.get(id=size)
+                for size, amount in item['sizes'].items():
+                    size_instance = Size.objects.get(id=int(size))
                     ItemSize.objects.get_or_create(
                         item=item_instance, size=size_instance,
-                        is_in_stock=True
+                        amount=amount
                     )
                 for image in item['images']:
                     ImageItem.objects.get_or_create(
