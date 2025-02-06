@@ -1,0 +1,90 @@
+.itemPageWrapper {
+
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.arrowWrapper {
+  display: flex;
+}
+
+.mainWrapper {
+  display: flex;
+  margin-bottom: 125px;
+}
+
+.sliderWrapper {
+  border: 2px dashed black;
+  margin-bottom: 10px;
+}
+
+.items {
+  display: flex;
+}
+
+.items img {
+  margin-right: 10px;
+}
+
+.items img:last-child {
+  margin-right: 0;
+}
+
+.itemPhoto {
+  border: 2px dashed black;
+  width: 70px;
+  height: 70px;
+}
+
+.activeItemPhoto {
+  border: 2px solid black;
+}
+
+.right {
+  margin-left: 40px;
+}
+
+.nameItem {
+  font-size: 20px;
+  padding-bottom: 4px;
+  font-weight: bold;
+}
+
+.priceItem {
+  font-size: 24px;
+  padding-bottom: 12px;
+  font-weight: bold;
+}
+
+.descriptionItem {
+  width: 215px;
+  padding-bottom: 12px;
+}
+
+.sizeList {
+  display: flex;
+}
+
+.sizeItem {
+  display: flex;
+  width: 40px;
+  height: 48px;
+  margin: 8px 8px 20px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: black;
+  width: 256px;
+  height: 60px;
+  border-radius: 8px;
+}

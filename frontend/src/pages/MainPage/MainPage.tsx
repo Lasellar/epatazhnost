@@ -1,6 +1,6 @@
 import React from 'react';
-import Slider from '../../components/Slider/Slider'
 import MainPageStyles from './MainPage.module.scss'
+import SliderMainPage from "../../components/SliderMainPage/SliderMainPage";
 
 const members = [
     {name: 'Влад Чернеций', role: 'вокал', imageSrc: '/path/to/image1.jpg'},
@@ -36,7 +36,7 @@ const IconCard = ({src, name}: { src: string, name: string }) => (
 const MainPage = () => {
     return (
         <div>
-            <Slider/>
+            <SliderMainPage />
             <div className={MainPageStyles.wrapper}>
                 <div>
                     <img src="/mainTitle.svg" alt="epatazhnost"/>
