@@ -172,3 +172,12 @@ class PromoCode(Model):
 
     def __str__(self):
         return f'[{self.code}] {self.name}, остаток: {self.amount}'
+
+
+class MainPagePhoto(Model):
+    image = ImageField(upload_to='main_page_images')
+    is_published = BooleanField(blank=True, default=False)
+
+    class Meta:
+        verbose_name = 'Фото с главной страницы'
+        verbose_name_plural = 'фото с главной страницы'
