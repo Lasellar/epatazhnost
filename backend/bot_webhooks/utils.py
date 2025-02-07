@@ -7,15 +7,15 @@ class SendMessage:
         self.TOKEN = TOKEN
         self.MAKS_ID = MAKS_ID
         self.TELEGRAM_API = TELEGRAM_API
-        self.chat_id = '&chat_id='
-        self.text = '&text='
+        self._chat_id = '&chat_id='
+        self._text = '&text='
 
     def get_link(self):
         return f'{TELEGRAM_API}sendMessage?'
 
     def info(self, chat, text, *args):
         webhook = (
-            f'{self.get_link()}{self.chat_id}{self.MAKS_ID}{self.text}'
+            f'{self.get_link()}{self._chat_id}{self.MAKS_ID}{self._text}'
             f'отправлено сообщение:\nчат: {chat}\nтекст: {text}'
         )
         if args:
@@ -25,7 +25,7 @@ class SendMessage:
         requests.get(webhook)
 
     def send_text(self, chat, text):
-        webhook = f'{self.get_link()}{self.chat_id}{chat}{self.text}{text}'
+        webhook = f'{self.get_link()}{self._chat_id}{chat}{self._text}{text}'
         self.info(chat, text)
         return requests.get(webhook)
 

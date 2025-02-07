@@ -48,6 +48,10 @@ class GigViewSet(ReadOnlyModelViewSet):
     serializer_class = GigSerializer
 
 
+@api_view(['GET'])
 def send_message_by_bot(request, chat_id, text):
-    return SendMessage(chat_id=chat_id, text=text).send()
+    if request.user.is_superuser:
+        SendMessage().send_text(chat=chat_id, text=text)
+        return Response(data={'status': 'Отправлено!'}, status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_404_NOT_FOUND)
 

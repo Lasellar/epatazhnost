@@ -191,8 +191,8 @@ class Bot(Model):
     class Meta:
         verbose_name = 'Бот'
 
-    def get_ansolute_url(self):
+    def get_absolute_url(self):
         return reverse(
             'api_v1:send_message_by_bot',
-            kwargs={'chat_id': self.chat_id, 'message': self.message}
+            kwargs={'chat_id': self.chat_id, 'text': self.message}
         )

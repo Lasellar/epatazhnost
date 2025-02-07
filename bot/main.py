@@ -16,17 +16,17 @@ ME = getenv('ME')
 bot = Client('bot', bot_token=TOKEN, api_hash=API_HASH, api_id=API_ID)
 
 
-@bot.on_message(~filters.group)
-async def echo(client_object, message: Message):
-    await message.reply(f'[{datetime.now()}] {message.text}')
-
-
 @bot.on_message(filters.command('start') & ~filters.group)
 async def start_command(client_object, message: Message):
     await bot.send_message(
         chat_id=message.chat.id,
         text=hi
     )
+
+
+@bot.on_message(~filters.group)
+async def echo(client_object, message: Message):
+    await message.reply(f'[{datetime.now()}] {message.text}')
 
 
 while True:

@@ -142,15 +142,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            cd epatazhnost
-            sudo docker compose pull
-            sudo docker compose down
-            sudo docker compose up -d
-            sudo docker compose exec backend python manage.py migrate
-            sudo docker compose exec backend python manage.py collectstatic
-            sudo docker compose exec backend cp -r /app/backend_static/static/. /backend_static/static/
-            sudo docker image ls
-            sudo docker image rm $(sudo docker image ls -f "dangling=true" -q)
             echo "Запуск бота"
             sleep 2
             sudo docker kill bot 
@@ -162,3 +153,12 @@ jobs:
             -e ME=${{ secrets.MY_TG_ID }} \
             ${{ secrets.DOCKER_USERNAME }}/epatazhnost_bot
             echo "бот запущен"
+            cd epatazhnost
+            sudo docker compose pull
+            sudo docker compose down
+            sudo docker compose up -d
+            sudo docker compose exec backend python manage.py migrate
+            sudo docker compose exec backend python manage.py collectstatic
+            sudo docker compose exec backend cp -r /app/backend_static/static/. /backend_static/static/
+            sudo docker image ls
+            sudo docker image rm $(sudo docker image ls -f "dangling=true" -q)
