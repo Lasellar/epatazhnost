@@ -8,7 +8,7 @@ from rest_framework.serializers import (
 )
 
 from .models import (
-    Category, Size, ItemSize, Item, ImageItem, Gig, ShoppingCart, UserInfo
+    Category, Size, ItemSize, Item, ImageItem, Gig, ShoppingCart, UserInfo, MainPagePhoto
 )
 
 import base64
@@ -32,7 +32,7 @@ class SizeItemSerializer(ModelSerializer):
 
     class Meta:
         model = ItemSize
-        fields = ('name', 'is_in_stock')
+        fields = ('name', 'amount')
 
 
 class ItemSerializer(ModelSerializer):
@@ -84,5 +84,11 @@ class OrderSerializer(ModelSerializer):
         fields = (
             'id', 'user', 'items'
         )
+
+
+class MainPagePhotoSerializer(ModelSerializer):
+    class Meta:
+        model = MainPagePhoto
+        fields = ('image',)
 
 

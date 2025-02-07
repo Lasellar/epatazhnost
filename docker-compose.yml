@@ -16,11 +16,17 @@ services:
       - media_volume:/app/media/
     depends_on:
       - db
-  bot:
-    image: lasellar/epatazhnost_bot
+  #bot:
+    #image: lasellar/epatazhnost_bot
+    #env_file: .env
+    #depends_on:
+      #- db
+  frontend:
+    image: lasellar/epatazhnost_frontend
     env_file: .env
-    depends_on:
-      - db
+    volumes:
+      - static_volume:/frontend_static
+    command: cp -r /app/build/. /frontend_static/
   gateway:
     image: lasellar/epatazhnost_gateway
     env_file: .env
