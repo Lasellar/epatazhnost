@@ -2,6 +2,7 @@ from django.db.models import (
     Model, CharField, IntegerField, ForeignKey, BooleanField,
     ManyToManyField, SlugField, TextField, CASCADE, ImageField, UniqueConstraint, DateTimeField
 )
+from django.urls import reverse
 
 
 class Category(Model):
@@ -181,3 +182,17 @@ class MainPagePhoto(Model):
     class Meta:
         verbose_name = 'Фото с главной страницы'
         verbose_name_plural = 'фото с главной страницы'
+
+
+class Bot(Model):
+    chat_id = CharField(max_length=14)
+    message = TextField()
+
+    class Meta:
+        verbose_name = 'Бот'
+
+    def get_ansolute_url(self):
+        return reverse(
+            'api_v1:send_message_by_bot',
+            kwargs={'chat_id': self.chat_id, 'message': self.message}
+        )

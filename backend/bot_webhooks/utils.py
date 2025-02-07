@@ -1,5 +1,5 @@
 import requests
-from constants import TOKEN, MAKS_ID, TELEGRAM_API
+from .constants import TOKEN, MAKS_ID, TELEGRAM_API
 
 
 class SendMessage:
@@ -30,4 +30,4 @@ class SendMessage:
         return requests.get(webhook)
 
 
-info = SendMessage().send_text(MAKS_ID, 'test')
+# info = SendMessage().send_text(MAKS_ID, 'test')

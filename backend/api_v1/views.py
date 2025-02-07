@@ -8,6 +8,7 @@ from .models import Item, Gig, ShoppingCart
 from .serializers import (
     ItemSerializer, GigSerializer
 )
+from bot_webhooks.utils import SendMessage
 
 
 class ShopViewSet(ModelViewSet):
@@ -45,4 +46,8 @@ class GigViewSet(ReadOnlyModelViewSet):
     """
     queryset = Gig.objects.filter(is_published=True)
     serializer_class = GigSerializer
+
+
+def send_message_by_bot(request, chat_id, text):
+    return SendMessage(chat_id=chat_id, text=text).send()
 

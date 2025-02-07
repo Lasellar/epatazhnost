@@ -5,7 +5,7 @@ from django.contrib.admin import (
 
 from .models import (
     Category, Size, ItemSize, Item, ImageItem, Gig,
-    ShoppingCart, MainPagePhoto
+    ShoppingCart, MainPagePhoto, Bot
 )
 
 
@@ -61,3 +61,8 @@ class ShoppingCartAdmin(CustomModelAdmin):
 class MainPagePhotoAdmin(CustomModelAdmin):
     list_display = ('id', 'image', 'is_published')
     list_editable = ('is_published',)
+
+
+@register(Bot)
+class BotAdmin(CustomModelAdmin):
+    list_display = ('id', 'chat_id', 'message')
