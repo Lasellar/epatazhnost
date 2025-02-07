@@ -121,7 +121,7 @@ jobs:
       - build_backend_and_push_to_docker_hub
       - build_frontend_and_push_to_docker_hub
       - build_gateway_and_push_to_docker_hub
-      - build_bot_and_push_to_docker_hub
+      #- build_bot_and_push_to_docker_hub
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -146,7 +146,15 @@ jobs:
             sudo docker compose pull
             sudo docker compose down
             sudo docker compose up -d
-            echo "Пауза перед миграцией 10 с"
+            echo "Запуск бота"
+            sleep 2
+            sudo docker kill bot 
+            sudo docker rm bot
+            sudo docker run --name bot ${{ secrets.DOCKER_USERNAME }}/epatazhnost_bot \
+            -e TOKEN=${{ secrets.BOT_TOKEN }} \
+            -e API_HASH=${{ secrets.API_HASH }} \
+            -e API_ID=${{ secrets.API_ID }} \
+            -e ME=${{ secrets.MY_TG_ID }}
             sleep 10
             sudo docker compose exec backend python manage.py migrate
             sudo docker compose exec backend python manage.py collectstatic

@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 load_dotenv()
-TOKEN = getenv('TOKEN')
+TOKEN = '7580879384:AAFvVSXLmdEpqDh0PxdVRl0aAKnm7EGvrOw'
 API_ID = getenv('API_ID')
 API_HASH = getenv('API_HASH')
 ME = getenv('ME')
@@ -30,7 +30,4 @@ async def start_command(client_object, message: Message):
 
 
 while True:
-    try:
-        bot.run()
-    except Exception as ex:
-        print(ex)
+    bot.run()
