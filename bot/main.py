@@ -12,8 +12,9 @@ TOKEN = getenv('TOKEN')
 API_ID = getenv('API_ID')
 API_HASH = getenv('API_HASH')
 ME = getenv('ME')
-BOT_ID = getenv('BOT_ID')
 bot = Client('bot', bot_token=TOKEN, api_hash=API_HASH, api_id=API_ID)
+with bot:
+    BOT_ID = bot.get_me().id
 
 
 @bot.on_message(filters.command('start') & ~filters.group & ~filters.service)
@@ -28,8 +29,8 @@ async def start_command(_, message: Message):
 async def echo(_, message: Message):
     if not message.from_user.is_bot:
         await message.reply(
-            f'почему??, from_user.id:{message.from_user.id}, '
-            f'{BOT_ID}, '
+            f'from_user.id:{message.from_user.id}, '
+            f'BOT_ID: {BOT_ID}, '
             f'is_bot: {message.from_user.is_bot}'
         )
 
