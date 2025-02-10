@@ -26,8 +26,12 @@ async def start_command(_, message: Message):
 
 @bot.on_message(~filters.group & ~filters.service)
 async def echo(_, message: Message):
-    if message.from_user.id != BOT_ID:
-        await message.reply(f'почему??, from_user.id:{message.from_user.id}, {BOT_ID}')
+    if not message.from_user.is_bot:
+        await message.reply(
+            f'почему??, from_user.id:{message.from_user.id}, '
+            f'{BOT_ID}, '
+            f'is_bot: {message.from_user.is_bot}'
+        )
 
 
 while True:

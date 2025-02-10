@@ -30,4 +30,4 @@ class BOT:
         return
 
 
-BOT.send_text(MAKS_ID, 'test')
+BOT.info(MAKS_ID, 'test')
