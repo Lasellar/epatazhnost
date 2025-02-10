@@ -1,5 +1,5 @@
 import requests
-from constants import TOKEN, MAKS_ID, TELEGRAM_API
+from backend.bot_webhooks.constants import TOKEN, MAKS_ID, TELEGRAM_API
 
 
 class BOT:

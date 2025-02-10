@@ -5,11 +5,10 @@ from dotenv import load_dotenv
 from texts import hi
 
 from os import getenv
-from datetime import datetime
 
 
 load_dotenv()
-TOKEN = '7580879384:AAFvVSXLmdEpqDh0PxdVRl0aAKnm7EGvrOw'
+TOKEN = getenv('TOKEN')
 API_ID = getenv('API_ID')
 API_HASH = getenv('API_HASH')
 ME = getenv('ME')
