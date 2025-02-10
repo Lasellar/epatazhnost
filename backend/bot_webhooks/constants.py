@@ -3,6 +3,6 @@ import os
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-MAKS_ID = os.getenv('MAKS_ID')
+MAKS_ID = os.getenv('ME')
 
 TELEGRAM_API = f'https://api.telegram.org/bot{TOKEN}/'

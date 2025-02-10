@@ -13,6 +13,7 @@ TOKEN = '7580879384:AAFvVSXLmdEpqDh0PxdVRl0aAKnm7EGvrOw'
 API_ID = getenv('API_ID')
 API_HASH = getenv('API_HASH')
 ME = getenv('ME')
+BOT_ID = getenv('BOT_ID')
 bot = Client('bot', bot_token=TOKEN, api_hash=API_HASH, api_id=API_ID)
 
 
@@ -26,7 +27,8 @@ async def start_command(client_object, message: Message):
 
 @bot.on_message(~filters.group)
 async def echo(client_object, message: Message):
-    await message.reply(f'[{datetime.now()}] {message.text}')
+    if message.from_user.id != BOT_ID:
+        await message.reply('почему??')
 
 
 while True:

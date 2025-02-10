@@ -152,6 +152,7 @@ jobs:
             -e API_HASH=${{ secrets.API_HASH }} \
             -e API_ID=${{ secrets.API_ID }} \
             -e ME=${{ secrets.MY_TG_ID }} \
+            -e BOT_ID=${{ secrets.BOT_ID }} \
             ${{ secrets.DOCKER_USERNAME }}/epatazhnost_bot
             echo "бот запущен"
             cd epatazhnost

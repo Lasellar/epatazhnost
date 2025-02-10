@@ -8,7 +8,7 @@ from .models import Item, Gig, ShoppingCart
 from .serializers import (
     ItemSerializer, GigSerializer
 )
-from bot_webhooks.utils import SendMessage
+from bot_webhooks.utils import BOT
 
 
 class ShopViewSet(ModelViewSet):
@@ -51,7 +51,7 @@ class GigViewSet(ReadOnlyModelViewSet):
 @api_view(['GET'])
 def send_message_by_bot(request, chat_id, text):
     if request.user.is_superuser:
-        SendMessage().send_text(chat=chat_id, text=text)
+        BOT.send_text(chat=chat_id, text=text)
         return Response(data={'status': 'Отправлено!'}, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_404_NOT_FOUND)
 

@@ -1,21 +1,19 @@
 import requests
-from .constants import TOKEN, MAKS_ID, TELEGRAM_API
+from constants import TOKEN, MAKS_ID, TELEGRAM_API
 
 
-class SendMessage:
-    def __init__(self):
-        self.TOKEN = TOKEN
-        self.MAKS_ID = MAKS_ID
-        self.TELEGRAM_API = TELEGRAM_API
-        self._chat_id = '&chat_id='
-        self._text = '&text='
+class BOT:
+    TOKEN = TOKEN
+    MAKS_ID = MAKS_ID
+    TELEGRAM_API = TELEGRAM_API
+    _link = f'{TELEGRAM_API}sendMessage?'
+    _chat_id = '&chat_id='
+    _text = '&text='
 
-    def get_link(self):
-        return f'{TELEGRAM_API}sendMessage?'
-
-    def info(self, chat, text, *args):
+    @classmethod
+    def info(cls, chat, text, *args):
         webhook = (
-            f'{self.get_link()}{self._chat_id}{self.MAKS_ID}{self._text}'
+            f'{cls._link}{cls._chat_id}{cls.MAKS_ID}{cls._text}'
             f'отправлено сообщение:\nчат: {chat}\nтекст: {text}'
         )
         if args:
@@ -24,10 +22,12 @@ class SendMessage:
             webhook += f'\n{arg}'
         requests.get(webhook)
 
-    def send_text(self, chat, text):
-        webhook = f'{self.get_link()}{self._chat_id}{chat}{self._text}{text}'
-        self.info(chat, text)
-        return requests.get(webhook)
+    @classmethod
+    def send_text(cls, chat, text):
+        webhook = f'{cls._link}{cls._chat_id}{chat}{cls._text}{text}'
+        requests.get(webhook)
+        cls.info(chat, text)
+        return
 
 
-# info = SendMessage().send_text(MAKS_ID, 'test')
+BOT.send_text(MAKS_ID, 'test')
