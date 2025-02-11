@@ -9,6 +9,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'epatazhnost.ru',
     'epatazhnost.ddns.net',
     '176.113.82.148',
     '127.0.0.1',
@@ -121,6 +122,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
 ]
 CSRF_TRUSTED_ORIGINS = (
+    'https://epatazhnost.ru'
     'https://epatazhnost.ddns.net',
     'http://epatazhnost.ddns.net',
 )
