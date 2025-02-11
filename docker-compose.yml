@@ -16,14 +16,6 @@ services:
       - media_volume:/app/media/
     depends_on:
       - db
-    networks:
-      default:
-        aliases:
-          - backend
-      dns:
-        - 8.8.8.8  # Публичный DNS Google
-      extra_hosts:
-        - "host.docker.internal:host-gateway"
   #bot:
     #image: lasellar/epatazhnost_bot
     #env_file: .env
