@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from .views import ShopViewSet, GigViewSet, send_message_by_bot
+from .views import ShopViewSet, GigViewSet
 
 app_name = 'api_v1'
 router = DefaultRouter()
