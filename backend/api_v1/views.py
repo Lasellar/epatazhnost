@@ -51,7 +51,12 @@ class GigViewSet(ReadOnlyModelViewSet):
 @api_view(['GET'])
 def send_message_by_bot(request, chat_id, text):
     if request.user.is_superuser:
-        BOT.send_text(chat=chat_id, text=text)
-        return Response(data={'status': 'Отправлено!'}, status=status.HTTP_200_OK)
+        webhook = BOT.send_text(chat=chat_id, text=text)
+        return Response(data={
+            'status': 'Отправлено!',
+            'chat': chat_id,
+            'text': text,
+            'webhook': webhook
+        }, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_404_NOT_FOUND)
 

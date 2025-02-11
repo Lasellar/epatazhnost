@@ -27,7 +27,7 @@ class BOT:
         webhook = f'{cls._link}{cls._chat_id}{chat}{cls._text}{text}'
         requests.get(webhook)
         cls.info(chat, text)
-        return
+        return webhook
 
 
 # BOT.send_text(MAKS_ID, 'test')
