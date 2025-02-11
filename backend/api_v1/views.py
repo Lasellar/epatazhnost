@@ -46,4 +46,3 @@ class GigViewSet(ReadOnlyModelViewSet):
     """
     queryset = Gig.objects.filter(is_published=True)
     serializer_class = GigSerializer
-
