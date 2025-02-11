@@ -47,16 +47,3 @@ class GigViewSet(ReadOnlyModelViewSet):
     queryset = Gig.objects.filter(is_published=True)
     serializer_class = GigSerializer
 
-
-@api_view(['GET'])
-def send_message_by_bot(request, chat_id, text):
-    if request.user.is_superuser:
-        webhook = BOT.send_text(chat=chat_id, text=text)
-        return Response(data={
-            'status': 'Отправлено!',
-            'chat': chat_id,
-            'text': text,
-            'webhook': webhook
-        }, status=status.HTTP_200_OK)
-    return Response(status=status.HTTP_404_NOT_FOUND)
-

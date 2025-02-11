@@ -11,9 +11,5 @@ router.register('concerts', GigViewSet, basename='concerts')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path(
-        'send_message_by_bot/<str:chat_id>/<str:text>/',
-        send_message_by_bot, name='send_message_by_bot'
-    ),
 ]
 
