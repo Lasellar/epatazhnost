@@ -30,4 +30,5 @@ class BOT:
         return webhook
 
 
-# BOT.send_text(MAKS_ID, 'test')
+if __name__ == '__main__':
+    BOT.send_text(MAKS_ID, 'test')
