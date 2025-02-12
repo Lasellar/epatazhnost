@@ -16,6 +16,8 @@ services:
       - media_volume:/app/media/
     depends_on:
       - db
+    ports:
+      - "8000:8000"
   #bot:
     #image: lasellar/epatazhnost_bot
     #env_file: .env
