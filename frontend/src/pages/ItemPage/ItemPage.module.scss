@@ -18,7 +18,7 @@
 }
 
 .sliderWrapper {
-  border: 2px dashed black;
+  border: 1px dashed black;
   margin-bottom: 10px;
 }
 
@@ -35,13 +35,13 @@
 }
 
 .itemPhoto {
-  border: 2px dashed black;
+  border: 1px dashed black;
   width: 70px;
   height: 70px;
 }
 
 .activeItemPhoto {
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
 .right {
@@ -87,4 +87,6 @@
   width: 256px;
   height: 60px;
   border-radius: 8px;
+  font-weight: bold;
+  font-size: 18px;
 }

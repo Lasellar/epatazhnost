@@ -41,15 +41,17 @@ const ItemPage = () => {
             <div className={ItemPageStyles.mainWrapper}>
                 <div className={ItemPageStyles.left}>
                     <div className={ItemPageStyles.sliderWrapper}>
-                        <SliderItemPage images={item.images} onSlideChange={handleSlideChange} />
+                        <SliderItemPage images={item.images} activeIndex={activeIndex} onSlideChange={handleSlideChange} />
                     </div>
                     <div className={ItemPageStyles.items}>
                         {item.images.map((image, index) => (
                             <img
                                 key={index}
+                                onClick={() => handleSlideChange(index)}
                                 className={`${ItemPageStyles.itemPhoto} ${activeIndex === index ? ItemPageStyles.activeItemPhoto : ''}`}
                                 src={image}
                                 alt={image}
+                                style={{cursor: 'pointer'}}
                             />
                         ))}
                     </div>
