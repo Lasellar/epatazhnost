@@ -142,19 +142,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            echo "Запуск бота"
-            sleep 2
-            sudo docker kill bot 
-            sudo docker rm bot
-            sudo docker image rm ${{ secrets.DOCKER_USERNAME }}/epatazhnost_bot
-            sudo docker run --restart=on-failure -d --name bot \
-            -e TOKEN=${{ secrets.BOT_TOKEN }} \
-            -e API_HASH=${{ secrets.API_HASH }} \
-            -e API_ID=${{ secrets.API_ID }} \
-            -e ME=${{ secrets.MY_TG_ID }} \
-            -e BOT_ID=${{ secrets.BOT_ID }} \
-            ${{ secrets.DOCKER_USERNAME }}/epatazhnost_bot
-            echo "бот запущен"
             cd epatazhnost
             sudo docker compose pull
             sudo docker compose down
