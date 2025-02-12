@@ -8,7 +8,7 @@ from bot_webhooks.utils import BOT
 @receiver(pre_save, sender=Message)
 def send_message_via_bot(sender, instance, **kwargs):
     if ',' in instance.chat_id:
-        chats = instance.chat_id.splt(', ')
+        chats = instance.chat_id.split(', ')
         for chat in chats:
             BOT.send_text(
                 chat=chat,
