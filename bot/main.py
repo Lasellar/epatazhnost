@@ -30,7 +30,8 @@ async def get_id(_, message: Message):
     await bot.send_message(
         chat_id=message.chat.id,
         text=f'{message.from_user.first_name}, твой id: '
-             f'<code>{message.from_user.id}</code>'
+             f'<code>{message.from_user.id}</code>\n'
+             f'Можешь просто нажать на него, и он скопируется'
     )
 
 
