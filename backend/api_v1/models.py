@@ -184,9 +184,15 @@ class MainPagePhoto(Model):
         verbose_name_plural = 'фото с главной страницы'
 
 
-class Bot(Model):
-    chat_id = CharField(max_length=14)
+class Message(Model):
+    chat_id = CharField(
+        max_length=14,
+        help_text='если нужно сделать рассылку, надо перечислить '
+                  'id пользователей через запятую с пробелом'
+    )
     message = TextField()
+    description = TextField()
 
     class Meta:
-        verbose_name = 'Бот'
+        verbose_name = 'Сообщение'
+        verbose_name_plural = 'Сообщения'
