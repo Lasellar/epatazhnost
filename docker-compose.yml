@@ -21,7 +21,7 @@ services:
       - media_volume:/app/media/
     depends_on:
       db:
-      condition: service_healthy
+        condition: service_healthy
   bot:
     image: lasellar/epatazhnost_bot
     env_file: .env
