@@ -22,6 +22,11 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:8000/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   bot:
     image: lasellar/epatazhnost_bot
     env_file: .env
@@ -42,6 +47,9 @@ services:
       - media_volume:/app/media/
     ports:
       - 8000:80
+    depends_on:
+      backend:
+        condition: service_healthy
 
 networks:
   default:
