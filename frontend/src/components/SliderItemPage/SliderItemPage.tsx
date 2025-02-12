@@ -171,7 +171,7 @@ const SliderItemPage: React.FC<SliderProps> = ({images, activeIndex, onSlideChan
                 >
                     <img src={'./rightArrow.svg'} alt={'rightArrow'}/>
                 </button>
-            </div>... {isModalOpen && (
+            </div>{isModalOpen && (
             <Modal onClose={handleCloseModal}>
                 <div className={SliderStyles.sliderWrapper}>
                     <button

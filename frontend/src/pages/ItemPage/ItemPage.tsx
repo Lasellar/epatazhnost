@@ -4,7 +4,7 @@ import SliderItemPage from "../../components/SliderItemPage/SliderItemPage";
 
 const item = {
     name: 'кофточка базовая черная',
-    description: '50% хлопок/50% полиэстер плотность 270 гр.',
+    description: '50% хлопок / 50% полиэстер плотность 270 гр.',
     mainImage: './hudi.svg',
     price: 2500,
     sizes: {
@@ -23,9 +23,14 @@ const item = {
 
 const ItemPage = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [selectedSize, setSelectedSize] = useState<string | null>(null); // Состояние для выбранного размера
 
     const handleSlideChange = (index: number) => {
         setActiveIndex(index); // Обновляем активный слайд
+    };
+
+    const handleSizeClick = (size: string) => {
+        setSelectedSize(size); // Обновляем выбранный размер
     };
 
     return (
@@ -72,10 +77,15 @@ const ItemPage = () => {
                             {Object.entries(item.sizes).map(([size, available], index) => (
                                 <div
                                     key={index}
+                                    onClick={() => handleSizeClick(size)} // Обработчик клика для выбора размера
                                     className={ItemPageStyles.sizeItem}
                                     style={{
-                                        border: `1px solid ${available ? 'black' : 'gray'}`,
-                                        color: available ? 'black' : 'gray'
+                                        border: ` ${available && selectedSize === size ? '2px solid black' : '1px solid black'}`, // Бордер 2px для выбранного размера
+                                        color: available ? (selectedSize === size ? 'black' : 'black') : 'gray',
+                                        cursor: available ? 'pointer' : 'not-allowed', // Курсор для недоступных размеров
+                                        padding: '8px', // Добавляем немного отступа для лучшего отображения
+                                        margin: '4px', // Отступ между элементами
+                                        borderRadius: '4px', // Закругление углов
                                     }}
                                 >
                                     {size}
