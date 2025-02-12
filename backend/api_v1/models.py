@@ -185,8 +185,7 @@ class MainPagePhoto(Model):
 
 
 class Message(Model):
-    chat_id = CharField(
-        max_length=14,
+    chat_id = TextField(
         help_text='если нужно сделать рассылку, надо перечислить '
                   'id пользователей через запятую с пробелом'
     )
