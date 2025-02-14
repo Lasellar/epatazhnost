@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from utils import check_user
+from utils import check_user, get_all_categories
 from texts import hi
 from constants import TOKEN, API_ID, API_HASH
 
@@ -36,6 +36,9 @@ async def echo(_, message: Message):
     if not message.from_user.is_bot:
         await check_user(message)
         await message.reply(f'BOT_ID: {BOT_ID}, echo')
+        await message.reply(f'категории')
+        cats = await get_all_categories()
+        await message.reply(f'1{cats}')
 
 
 while True:

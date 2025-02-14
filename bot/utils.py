@@ -1,6 +1,6 @@
 from pyrogram.types import Message
 
-from models import UserInfo
+from models import UserInfo, Category
 from db_config import session
 
 
@@ -25,3 +25,7 @@ async def check_user(message: Message) -> None:
         user = await create_user_object(message)
         session.add(user)
         session.commit()
+
+
+async def get_all_categories():
+    return session.query(Category).all()

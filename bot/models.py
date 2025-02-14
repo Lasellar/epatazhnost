@@ -41,4 +41,12 @@ class UserInfo(Base):
         return f'{self.first_name} {self.last_name}, {self.cookie}'
 
 
+class Category(Base):
+    name = Column(String(30))
+    slug = Column(String(50))
+
+    def __str__(self):
+        return self.name
+
+
 Base.metadata.create_all(engine)
