@@ -127,12 +127,12 @@ class ShoppingCart(Model):
 
 
 class UserInfo(Model):
-    cookie = CharField(max_length=60)
-    first_name = CharField(max_length=64)
-    last_name = CharField(max_length=64)
-    third_name = CharField(max_length=64)
+    cookie = CharField(max_length=60, null=True)
+    first_name = CharField(max_length=64, null=True)
+    last_name = CharField(max_length=64, null=True)
+    third_name = CharField(max_length=64, null=True)
     telegram = CharField(max_length=1024, unique=True)
-    sdek = CharField(max_length=1024)
+    sdek = CharField(max_length=1024, null=True)
 
     class Meta:
         verbose_name = 'Инфо о пользователе'

@@ -30,12 +30,12 @@ class PromoCode(Base):
 
 
 class UserInfo(Base):
-    cookie = Column(String, nullable=True)
-    first_name = Column(String, nullable=True)
-    last_name = Column(String, nullable=True)
-    third_name = Column(String, nullable=True)
+    cookie = Column(String)
+    first_name = Column(String)
+    last_name = Column(String)
+    third_name = Column(String)
     telegram = Column(String, unique=True)
-    sdek = Column(String, nullable=True)
+    sdek = Column(String)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}, {self.cookie}'
