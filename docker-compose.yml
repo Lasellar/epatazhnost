@@ -9,7 +9,7 @@ services:
     volumes:
       - pg_data_production:/var/lib/postgresql/data/
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U bot_user -d telegram_bot" ]
+      test: ["CMD-SHELL", "pg_isready -U lasellar -d django" ]
       interval: 5s
       timeout: 5s
       retries: 5
