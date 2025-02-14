@@ -6,13 +6,14 @@ from db_config import session
 
 async def is_user_in_db(message: Message) -> bool:
     return True if session.query(UserInfo).filter_by(
-        telegram=message.from_user.id).first() else False
+        telegram=str(message.from_user.id)
+    ).first() else False
 
 
 async def create_user_object(message: Message) -> UserInfo:
     first_name = message.from_user.first_name
     last_name = message.from_user.last_name
-    telegram = message.from_user.id
+    telegram = str(message.from_user.id)
     user = UserInfo(
         first_name=first_name, last_name=last_name,
         telegram=telegram,
