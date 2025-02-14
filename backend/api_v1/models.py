@@ -1,6 +1,6 @@
 from django.db.models import (
     Model, CharField, IntegerField, ForeignKey, BooleanField,
-    ManyToManyField, SlugField, TextField, CASCADE, ImageField, UniqueConstraint, DateTimeField
+    ManyToManyField, SlugField, TextField, CASCADE, ImageField, UniqueConstraint, DateTimeField, FloatField
 )
 from django.urls import reverse
 
@@ -164,7 +164,7 @@ class ItemOrder(Model):
 class PromoCode(Model):
     name = CharField(max_length=100)
     code = CharField(max_length=16, unique=True)
-    discount = IntegerField(verbose_name='скидка в %')
+    discount = FloatField(verbose_name='скидка в %')
     amount = IntegerField()
 
     class Meta:
