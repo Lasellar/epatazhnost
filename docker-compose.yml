@@ -8,6 +8,11 @@ services:
     env_file: .env
     volumes:
       - pg_data_production:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bot_user -d telegram_bot" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   backend:
     image: lasellar/epatazhnost_backend
     env_file: .env
@@ -15,18 +20,20 @@ services:
       - static_volume:/backend_static
       - media_volume:/app/media/
     depends_on:
-      - db
-  #bot:
-    #image: lasellar/epatazhnost_bot
-    #env_file: .env
-    #depends_on:
-      #- db
-  frontend:
-    image: lasellar/epatazhnost_frontend
+      db:
+        condition: service_healthy
+  bot:
+    image: lasellar/epatazhnost_bot
     env_file: .env
-    volumes:
-      - static_volume:/frontend_static
-    command: cp -r /app/build/. /frontend_static/
+    depends_on:
+      db:
+        condition: service_healthy
+  #frontend:
+    #image: lasellar/epatazhnost_frontend
+    #env_file: .env
+    #volumes:
+      #- static_volume:/frontend_static
+    #command: cp -r /app/build/. /frontend_static/
   gateway:
     image: lasellar/epatazhnost_gateway
     env_file: .env
@@ -35,3 +42,10 @@ services:
       - media_volume:/app/media/
     ports:
       - 8000:80
+    depends_on:
+      - backend
+
+networks:
+  default:
+    name: bridge_network
+    driver: bridge

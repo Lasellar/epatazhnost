@@ -169,3 +169,4 @@ bot.session-journal
 sender
 logs.txt
 users.txt
+sqlite.db

@@ -1,6 +1,6 @@
 from django.db.models import (
     Model, CharField, IntegerField, ForeignKey, BooleanField,
-    ManyToManyField, SlugField, TextField, CASCADE, ImageField, UniqueConstraint, DateTimeField
+    ManyToManyField, SlugField, TextField, CASCADE, ImageField, UniqueConstraint, DateTimeField, FloatField
 )
 from django.urls import reverse
 
@@ -164,7 +164,7 @@ class ItemOrder(Model):
 class PromoCode(Model):
     name = CharField(max_length=100)
     code = CharField(max_length=16, unique=True)
-    discount = IntegerField(verbose_name='скидка в %')
+    discount = FloatField(verbose_name='скидка в %')
     amount = IntegerField()
 
     class Meta:
@@ -184,15 +184,14 @@ class MainPagePhoto(Model):
         verbose_name_plural = 'фото с главной страницы'
 
 
-class Bot(Model):
-    chat_id = CharField(max_length=14)
+class Message(Model):
+    chat_id = TextField(
+        help_text='если нужно сделать рассылку, надо перечислить '
+                  'id пользователей через запятую с пробелом'
+    )
     message = TextField()
+    description = TextField()
 
     class Meta:
-        verbose_name = 'Бот'
-
-    def get_absolute_url(self):
-        return reverse(
-            'api_v1:send_message_by_bot',
-            kwargs={'chat_id': self.chat_id, 'text': self.message}
-        )
+        verbose_name = 'Сообщение'
+        verbose_name_plural = 'Сообщения'

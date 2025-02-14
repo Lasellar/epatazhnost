@@ -9,7 +9,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'epatazhnost.ddns.net',
+    'epatazhnost.ru',
+    'epatazhnost.online',
+    'epatazhnost.world'
     '176.113.82.148',
     '127.0.0.1',
 ]
@@ -59,7 +61,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
-    'default1': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('POSTGRES_DB', 'django'),
         'USER': os.getenv('POSTGRES_USER', 'django'),
@@ -67,7 +69,7 @@ DATABASES = {
         'HOST': os.getenv('DB_HOST', 'db'),
         'PORT': os.getenv('DB_PORT', 5432)
     },
-    'default': {
+    'default1': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
@@ -121,6 +123,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
 ]
 CSRF_TRUSTED_ORIGINS = (
-    'https://epatazhnost.ddns.net',
-    'http://epatazhnost.ddns.net',
+    'https://epatazhnost.ru',
+    'https://epatazhnost.online',
+    'http://epatazhnost.world',
 )
