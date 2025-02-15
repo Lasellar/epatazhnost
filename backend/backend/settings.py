@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'epatazhnost.ru',
@@ -61,7 +61,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
-    'default1': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'USER': os.getenv('POSTGRES_USER', 'django'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
@@ -69,9 +69,9 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT', 5432),
         'NAME': os.getenv('POSTGRES_DB', 'django')
     },
-    'default': {
+    'default1': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.db',
     }
 }
 
@@ -127,3 +127,6 @@ CSRF_TRUSTED_ORIGINS = (
     'https://epatazhnost.online',
     'http://epatazhnost.world',
 )
+
+
+BOT_LINK = os.getenv('BOT_LINK')

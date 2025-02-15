@@ -38,18 +38,22 @@ class SizeItemSerializer(ModelSerializer):
 class ItemSerializer(ModelSerializer):
     """Сериализатор для вещи."""
     sizes = SizeItemSerializer(source='itemsize', many=True)
-    attachments = SerializerMethodField()
+    extra_images = SerializerMethodField()
     main_image = SerializerMethodField()
 
     class Meta:
         model = Item
         fields = (
             'id', 'is_published', 'name', 'price', 'description', 'sizes',
-            'main_image', 'attachments'
+            'main_image', 'extra_images'
         )
 
-    def get_attachments(self, obj):
-        return [image_item.image.url for image_item in obj.imageitem.all()]
+    def get_extra_images(self, obj):
+        return [
+            image_item.image.url for image_item in ImageItem.objects.filter(
+                item=obj, is_published=True
+            )
+        ]
 
     def get_main_image(self, obj):
         return obj.main_image.url
