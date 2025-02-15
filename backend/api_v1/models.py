@@ -30,6 +30,10 @@ class Size(Model):
         return self.name
 
 
+class Image(Model):
+    image = ImageField(upload_to='extra_images')
+
+
 class Item(Model):
     """Модель вещи."""
     name = CharField(max_length=64)
@@ -39,6 +43,9 @@ class Item(Model):
     )
     is_published = BooleanField(blank=True, default=False)
     main_image = ImageField(upload_to='items_images')
+    extra_images = ManyToManyField(
+        Image, related_name='itemextraimages', through='ImageItem'
+    )
     category = ForeignKey(
         Category, on_delete=CASCADE, related_name='itemcategory'
     )
@@ -75,11 +82,9 @@ class ItemSize(Model):
 
 
 class ImageItem(Model):
-    """Модель для связи вещей и картинок."""
-    image = ImageField(upload_to='items_images')
-    item = ForeignKey(
-        Item, related_name='imageitem', on_delete=CASCADE
-    )
+    """Модель для связи вещей и дополнительных картинок."""
+    image = ForeignKey(Image, related_name='imageitem', on_delete=CASCADE)
+    item = ForeignKey(Item, related_name='imageitem', on_delete=CASCADE)
     is_published = BooleanField(blank=True, default=False)
 
     class Meta:
